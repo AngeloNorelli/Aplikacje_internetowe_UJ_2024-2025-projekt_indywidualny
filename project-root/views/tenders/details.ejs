@@ -8,7 +8,7 @@
     <a href="/tenders/<%= tender.id %>/offer" class="btn btn-primary">Złóż ofertę</a>
   <% } else { %>
     <h4 class="mt-4">Oferty</h4>
-    <% if (offers && tender.offers.length > 0) { %>
+    <% if (offers && offers.length > 0) { %>
       <table class="table mt-2">
         <thead>
           <tr>
@@ -22,7 +22,7 @@
             <tr>
               <td><%= o.bidder_name %></td>
               <td><%= o.bid_value %></td>
-              <td><%= new Date(o.create_at).toLocaleString() %></td>
+              <td><%= new Date(o.created_at).toLocaleString() %></td>
             </tr>
           <% }) %>
         </tbody>

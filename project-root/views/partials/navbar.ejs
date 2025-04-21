@@ -1,17 +1,36 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">Przetargi</a>
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item">
-      <a class="nav-link" href="/">Strona główna</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/tenders">Lista przetargów</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/tenders/ended">Zakończone przetargi</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/tenders/new">Dodaj przetarg</a>
-    </li>
-  </ul>
+  <a class="navbar-brand ms-3" href="/">Przetargi</a>
+  <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="mainNavbar">
+    <ul class="navbar-nav ml-auto ms-4">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Strona główna</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/tenders">Lista przetargów</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/tenders/ended">Zakończone przetargi</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/tenders/new">Dodaj przetarg</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-auto">
+      <% if (currentUser) { %>
+        <li class="nav-item ms-3">
+          <a class="nav-link disabled">Zalogowano jako <%= currentUser.username %></a>
+        </li>
+        <li class="nav-item ms-4 me-3">
+          <a class="nav-link" href="/logout">Wyloguj</a>
+        </li>
+      <% } else { %>
+        <li class="nav-item ms-3 me-3">
+          <a class="nav-link" href="/login">Zaloguj</a>
+        </li>
+      <% } %>
+    </ul>
+  </div>
 </nav>

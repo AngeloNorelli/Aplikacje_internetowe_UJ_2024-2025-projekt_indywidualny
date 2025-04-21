@@ -20,4 +20,38 @@ CREATE TABLE offers (
   FOREIGN KEY (tender_id) REFERENCES tenders(id) ON DELETE CASCADE
 );
 
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL
+);
+
 ALTER TABLE offers MODIFY created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+-- Tworzenie przykładowych użytkowników
+INSERT INTO users (username, password) VALUES
+  ('institution1', '$2a$10$FiV3IqDbG4qyjOtSYxoGmOpvhDfjhNNRWsOD2LJ2t738AO5OLTFEG'),
+  ('institution2', '$2a$10$IhuzqO7UL.NFq.l/jzgkZ.iwgyMskTm9pKH3cGKG7b3fRn0KYUpCu');
+
+-- Tworzenie przykładowych przetargów
+INSERT INTO tenders (title, description, institution, start_time, end_time, max_budget) VALUES
+  ('Przetarg na budowę drogi', 'Budowa nowej drogi krajowej 5km', 'Instytucja A', '2025-04-01 08:00:00', '2025-05-01 23:59:59', 1000000.00),
+  ('Przetarg na dostawę komputerów', 'Zakup komputerów dla szkoły podstawowej', 'Instytucja B', '2025-04-10 08:00:00', '2025-04-20 23:59:59', 50000.00),
+  ('Przetarg na remont szkoły', 'Remont budynku szkoły podstawowej w centrum miasta', 'Instytucja C', '2025-03-01 08:00:00', '2025-03-15 23:59:59', 300000.00);
+
+-- Tworzenie przykładowych ofert dla aktywnych i zakończonych przetargów
+-- Aktywne oferty
+INSERT INTO offers (tender_id, bidder_name, bid_value, created_at) VALUES
+  (1, 'Firma A', 950000.00, '2025-04-01 10:00:00'),
+  (1, 'Firma B', 980000.00, '2025-04-02 12:30:00'),
+  (2, 'Firma X', 45000.00, '2025-04-10 09:00:00'),
+  (2, 'Firma Y', 48000.00, '2025-04-12 14:00:00');
+
+-- Zakończone oferty
+INSERT INTO offers (tender_id, bidder_name, bid_value, created_at) VALUES
+  (3, 'Firma Z', 280000.00, '2025-03-02 10:30:00'),
+  (3, 'Firma W', 290000.00, '2025-03-03 11:00:00');
+
+-- Zaktualizowanie statusu przetargów (tylko w przypadku zakończonych)
+-- Zakładając, że zakończony przetarg ma przeszły czas zakończenia
+UPDATE tenders SET end_time = '2025-03-15 23:59:59' WHERE id = 3;
