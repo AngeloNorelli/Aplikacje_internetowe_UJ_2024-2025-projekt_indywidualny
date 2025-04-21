@@ -1,0 +1,23 @@
+<div class="container mt-4">
+  <h2>Trwające przetargi</h2>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Tytuł</th>
+        <th>Start</th>
+        <th>Koniec</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tenders.forEach((tender, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><a href="/tenders/<%= tender.id %>"><%= tender.title %></a></td>
+          <td><%= new Date(tender.start_time).toLocaleString() %></td>
+          <td><%= new Date(tender.end_time).toLocaleString() %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

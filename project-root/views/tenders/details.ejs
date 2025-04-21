@@ -1,0 +1,34 @@
+<div class="container mt-4">
+  <h2><%= tender.title %></h2>
+  <p><string>Instytucja:</string> <%= tender.institution %></p>
+  <p><strong>Opis:</strong> <%= tender.description %></p>
+  <p><string>Termin składania ofert:</string> <%= new Date(tender.end_time).toLocaleString() %></p>
+
+  <% if (isActive) { %>
+    <a href="/tenders/<%= tender.id %>/offer" class="btn btn-primary">Złóż ofertę</a>
+  <% } else { %>
+    <h4 class="mt-4">Oferty</h4>
+    <% if (offers && tender.offers.length > 0) { %>
+      <table class="table mt-2">
+        <thead>
+          <tr>
+            <th>Nazwa</th>
+            <th>Wartość</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% offers.forEach(o => { %>
+            <tr>
+              <td><%= o.bidder_name %></td>
+              <td><%= o.bid_value %></td>
+              <td><%= new Date(o.create_at).toLocaleString() %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } else { %>
+        <p>Przetarg zakończony bez rozstrzygnięcia (wszystkie oferty przekroczyły budżet)</p>
+      <% } %>
+  <% } %>
+</div>

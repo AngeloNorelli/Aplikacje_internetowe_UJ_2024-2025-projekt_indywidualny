@@ -1,0 +1,21 @@
+<div class="container mt-4">
+  <h2>Zakończone przetargi</h2>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Tytuł</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tenders.forEach((tender, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><a href="/tenders/<%= tender.id %>"><%= tender.title %></a></td>
+          <td>Zakończony</td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

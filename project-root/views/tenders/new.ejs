@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <h2>Dodaj nowy przetarg</h2>
+  <form method="POST" action="/tender/new">
+    <div class="form-group">
+      <label>Tytuł</label>
+      <input type="text" name="title" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label>Instytucja zamawiająca</label>
+      <input type="text" name="institution" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label>Opis</label>
+      <textarea name="description" class="form-control" required></textarea>
+    </div>
+    <div class="form-group">
+      <label>Data i godzina rozpoczęcia</label>
+      <input type="datetime-local" name="start_time" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label>Data i godzina zakończenia</label>
+      <input type="datetime-local" name="end_time" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label>Maksymalna kwota zamówienia</label>
+      <input type="number" name="max_budget" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success mt-3">Dodaj przetarg</button>
+  </form>
+</div>
