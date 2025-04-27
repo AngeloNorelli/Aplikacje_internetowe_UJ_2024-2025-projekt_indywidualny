@@ -52,10 +52,8 @@ project-root/
 │   ├── Offer.js                      # Model oferty
 │   └── User.js                       # Model użytkownika (instytucji)
 ├── public/
-│   ├── css/
-│   │   └── styles.css                # Stylowanie (opcjonalnie z Bootstrapem)
-│   └── js/
-│       └── scripts.js                # JS frontendowy (opcjonalnie)
+│   ├── css/                          # Stylowanie (opcjonalnie z Bootstrapem)
+│   └── js/                           # JS frontendowy (opcjonalnie)              
 ├── routes/
 │   ├── tenderRoutes.js               # Ścieżki przetargowe i ofertowe
 │   └── authRoutes.js                 # Ścieżki logowania
