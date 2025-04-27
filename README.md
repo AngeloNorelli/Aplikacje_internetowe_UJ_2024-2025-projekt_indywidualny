@@ -36,6 +36,7 @@ System Przetargów to aplikacja internetowa umożliwiająca instytucjom ogłasza
   - Obsługa za pomocą `mysql2`
 
 ## Struktura projektu
+```text
 project-root/
 ├── app.js                            # Główna konfiguracja Express.js
 ├── package.json                      # Plik konfiguracyjny npm
@@ -72,3 +73,37 @@ project-root/
 │   │   ├── new.ejs                   # Formularz dodania nowego przetargu
 │   │   └── offerForm.ejs             # Formularz składania oferty
 │   └── index.ejs                     # Strona główna
+```
+
+## Instalacja
+
+1. Sklonuj repozytorium:
+  ```bash
+  git clone <URL_REPOZYTORIUM>
+  cd aplikacje-internetowe/project-root
+  ```
+2. Zainstaluj zależności
+  ```bash
+  npm install
+  ```
+3. Skonfiguruj plik .env:
+  ```text
+  DB_HOST=localhost
+  DB_USER=root
+  DB_PASSWORD=TwojeHaslo
+  DB_NAME=tenders
+  PORT=3000
+  ```
+4. Utwórz bazę danych zgodnie ze skryptem znajdującym:
+  ```mysql
+  CREATE DATABASE IF NOT EXISTS tenders;
+  -- Pozostałe zapytania w pliku scrypt_sql
+  ```
+5. Uruchom aplikację:
+  ```
+  npm start
+  ```
+6. Otwórz aplikację w przeglądarce:
+  ```
+  http://localhost:3000
+  ```
