@@ -14,14 +14,25 @@
       <li class="nav-item">
         <a class="nav-link" href="/tenders/ended">Zakończone przetargi</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/tenders/new">Dodaj przetarg</a>
-      </li>
+      <% if (currentUser) { %>
+        <% if (currentUser.type === 'institution') { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/tenders/myTenders">Moje przetargi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tenders/new">Dodaj przetarg</a>
+          </li>
+        <% } else if (currentUser.type === 'company') { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/offers/my">Moje oferty</a>
+          </li>
+        <% } %>
+      <% } %>
     </ul>
     <ul class="navbar-nav ms-auto">
       <% if (currentUser) { %>
         <li class="nav-item ms-3">
-          <a class="nav-link disabled">Zalogowano jako <%= currentUser.username %></a>
+          <a class="nav-link disabled">Zalogowano jako <%= currentUser.name %></a>
         </li>
         <li class="nav-item ms-4 me-3">
           <a class="nav-link" href="/logout">Wyloguj</a>

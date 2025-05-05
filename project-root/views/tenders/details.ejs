@@ -4,31 +4,30 @@
   <p><strong>Opis:</strong> <%= tender.description %></p>
   <p><string>Termin składania ofert:</string> <%= new Date(tender.end_time).toLocaleString() %></p>
 
-  <% if (isActive) { %>
+  <% if (isActive && currentUser && currentUser.type === 'company'){ %>
     <a href="/tenders/<%= tender.id %>/offer" class="btn btn-primary">Złóż ofertę</a>
-  <% } else { %>
-    <h4 class="mt-4">Oferty</h4>
-    <% if (offers && offers.length > 0) { %>
-      <table class="table mt-2">
-        <thead>
-          <tr>
-            <th>Nazwa</th>
-            <th>Wartość</th>
-            <th>Data</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% offers.forEach(o => { %>
-            <tr>
-              <td><%= o.bidder_name %></td>
-              <td><%= o.bid_value %></td>
-              <td><%= new Date(o.created_at).toLocaleString() %></td>
-            </tr>
-          <% }) %>
-        </tbody>
-      </table>
-      <% } else { %>
-        <p>Przetarg zakończony bez rozstrzygnięcia (wszystkie oferty przekroczyły budżet)</p>
-      <% } %>
   <% } %>
+  <% if (offers && offers.length > 0) { %>
+    <h4 class="mt-4  border-top pt-3">Oferty</h4>
+    <table class="table mt-2">
+      <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Wartość</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% offers.forEach(o => { %>
+          <tr>
+            <td><%= o.bidder_name %></td>
+            <td><%= o.bid_value %></td>
+            <td><%= new Date(o.created_at).toLocaleString() %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <% } else { %>
+      <p class="mt-4 border-top pt-3">Przetarg bez rozstrzygnięcia (brak ofert lub wszystkie oferty przekroczyły budżet)</p>
+    <% } %>
 </div>

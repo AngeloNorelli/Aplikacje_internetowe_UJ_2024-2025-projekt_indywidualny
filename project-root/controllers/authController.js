@@ -18,7 +18,9 @@ exports.loginUser = async (req, res) => {
 
   req.session.user = {
     id: user.id,
-    username: user.username
+    username: user.username,
+    name: user.name,
+    type: user.type
   }
 
   res.redirect('/');

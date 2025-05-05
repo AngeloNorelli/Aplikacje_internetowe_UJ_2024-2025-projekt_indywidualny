@@ -5,6 +5,7 @@ const tenderController = require('../controllers/tenderController');
 router.get('/', tenderController.showHome);
 
 router.get('/tenders', tenderController.showActiveTenders);
+router.get('/tenders/myTenders', tenderController.showUserTenders);
 
 router.get('/tenders/ended', tenderController.showEndedTenders);
 
@@ -15,5 +16,7 @@ router.get('/tenders/:id', tenderController.showTenderDetails);
 
 router.get('/tenders/:id/offer', tenderController.renderOfferForm);
 router.post('/tenders/:id/offer', tenderController.submitOffer);
+
+router.get('/offers/my', tenderController.showUserOffers);
 
 module.exports = router;

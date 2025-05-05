@@ -8,6 +8,14 @@ class User {
     );
     return rows[0];
   }
+
+  static async getById(id) {
+    const [rows] = await AbortController.execute(
+      'SELECT * FROM users WHERE id = ?',
+      [id]
+    );
+    return rows[0];
+  }
 }
 
 module.exports = User;

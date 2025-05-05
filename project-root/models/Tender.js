@@ -23,11 +23,19 @@ class Tender {
     return rows[0];
   }
 
+  static async getByUserId(userId) {
+    const [rows] = await db.execute(
+      'SELECT * FROM tenders WHERE institution_id = ? ORDER BY start_time DESC',
+      [userId]
+    );
+    return rows;
+  }
+
   static async create(data) {
-    const { title, description, institution, start_time, end_time, max_budget } = data;
+    const { title, description, institution_id, start_time, end_time, max_budget } = data;
     await db.execute(
-      'INSERT INTO tenders (title, description, institution, start_time, end_time, max_budget) VALUES (?, ?, ?, ?, ?, ?)',
-      [title, description, institution, start_time, end_time, max_budget]
+      'INSERT INTO tenders (title, description, institution_id, start_time, end_time, max_budget) VALUES (?, ?, ?, ?, ?, ?)',
+      [title, description, institution_id, start_time, end_time, max_budget]
     );
   }
 }

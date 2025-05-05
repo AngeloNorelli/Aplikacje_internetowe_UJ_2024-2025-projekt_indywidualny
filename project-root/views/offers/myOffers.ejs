@@ -1,0 +1,27 @@
+<div class="container mt-4">
+  <h2>Moje oferty</h2>
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Tytuł przetargu</th>
+        <th>Kwota oferty</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% offers.forEach((offer, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><a href="/tenders/<%= offer.tender_id %>"><%= offer.tender_title %></a></td>
+          <td><%= offer.bid_value %> PLN</td>
+          <td><%= new Date(offer.created_at).toLocaleString() %></td>
+        </tr>
+      <% }) %>
+      <% if (offers.length === 0) { %>
+        <tr>
+          <td colspan="4" class="text-center">Brak ofert</td>
+        </tr>
+      <% } %>
+    </tbody>
+</div>

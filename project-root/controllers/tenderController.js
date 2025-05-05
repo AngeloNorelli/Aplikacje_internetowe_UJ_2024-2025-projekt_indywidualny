@@ -15,6 +15,15 @@ exports.showEndedTenders = async (req, res) => {
   res.render('tenders/ended', { tenders });
 };
 
+exports.showUserTenders = async (req, res) => {
+  if(!req.session.user || req.session.user.type !== 'institution') {
+    return res.status(403).send('Unauthorized');
+  }
+
+  const tenders = await Tender.getByUserId(req.session.user.id);
+  res.render('tenders/myTenders', { tenders });
+};
+
 exports.showTenderDetails = async (req, res) => {
   const tender = await Tender.getById(req.params.id);
 
@@ -34,12 +43,15 @@ exports.renderTenderForm = (req, res) => {
 };
 
 exports.addTender = async (req, res) => {
-  const { title, description, institution, start_time, end_time, max_budget } = req.body;
+  if(!req.session.user || request.session.user.type !== 'insitution') {
+    return res.status(403).send('Unauthorized');
+  }
+
+  const { title, description, start_time, end_time, max_budget } = req.body;
 
   console.log('Received data:', {
     title,
     description,
-    institution,
     start_time,
     end_time,
     max_budget
@@ -49,7 +61,7 @@ exports.addTender = async (req, res) => {
     await Tender.create({
       title,
       description,
-      institution,
+      institution_id: req.session.user.id,
       start_time,
       end_time,
       max_budget
@@ -83,4 +95,12 @@ exports.submitOffer = async (req, res) => {
     bid_value: req.body.bid_value
   });
   res.redirect(`/tenders/${req.params.id}`);
+};
+
+exports.showUserOffers = async (req, res) => {
+  if(!req.session.user || req.session.user.type !== 'company')
+    return res.status(403).send('Unauthorized');
+
+  const offers = await Offer.getByUserId(req.session.user.id);
+  res.render('offers/myOffers', { offers });
 }
