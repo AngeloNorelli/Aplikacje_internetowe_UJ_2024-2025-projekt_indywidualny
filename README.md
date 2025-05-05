@@ -67,9 +67,12 @@ project-root/
 │   ├── tenders/
 │   │   ├── list.ejs                  # Lista trwających przetargów
 │   │   ├── ended.ejs                 # Lista zakończonych przetargów
+│   │   ├── myTenders.ejs             # Lista przetargów użytkownika
 │   │   ├── details.ejs               # Szczegóły przetargu i lista ofert
 │   │   ├── new.ejs                   # Formularz dodania nowego przetargu
 │   │   └── offerForm.ejs             # Formularz składania oferty
+│   ├── offers/
+│   │   └── myOffers.ejs                 # Formularz logowania
 │   └── index.ejs                     # Strona główna
 ```
 
